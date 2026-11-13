@@ -1,0 +1,34 @@
+{
+  "event": { "id": "evt-1", "name": "Lakeside Open (Sample)", "status": "live" },
+  "bouts": [
+    { "id": "b1", "mat": 1, "red": "A. Rivera", "blue": "J. Okafor", "redScore": 0, "blueScore": 0, "period": 1, "status": "live", "streamId": "mat-1" },
+    { "id": "b2", "mat": 2, "red": "M. Chen", "blue": "D. Novak", "redScore": 0, "blueScore": 0, "period": 1, "status": "live", "streamId": "mat-2" },
+    { "id": "b3", "mat": 3, "red": "T. Haddad", "blue": "L. Brooks", "redScore": 0, "blueScore": 0, "period": 1, "status": "live" },
+    { "id": "b4", "mat": 4, "red": "S. Ito", "blue": "R. Mensah", "redScore": 0, "blueScore": 0, "period": 1, "status": "scheduled", "streamId": "mat-4" }
+  ],
+  "loopSeconds": 60,
+  "frames": [
+    { "at": 2,  "update": { "seq": 1,  "boutId": "b1", "redScore": 2, "blueScore": 0 } },
+    { "at": 4,  "update": { "seq": 2,  "boutId": "b2", "redScore": 1, "blueScore": 0, "period": 1, "status": "live", "streamId": "mat-2" } },
+    { "at": 6,  "update": { "seq": 3,  "boutId": "b1", "redScore": 2, "blueScore": 0, "period": 1, "status": "live", "streamId": "mat-1" } },
+    { "at": 8,  "update": { "seq": 4,  "boutId": "b4", "period": 1, "status": "live", "streamId": "mat-4" } },
+    { "at": 10, "update": { "seq": 5,  "boutId": "b2", "redScore": 3, "blueScore": 0 } },
+    { "at": 12, "update": { "seq": 6,  "boutId": "b3", "redScore": 0, "blueScore": 1 } },
+    { "at": 14, "update": { "seq": 7,  "boutId": "b1", "redScore": 4, "blueScore": 2 } },
+    { "at": 16, "update": { "seq": 8,  "boutId": "b2", "redScore": 3, "blueScore": 0, "period": 1, "status": "live", "streamId": "mat-2" } },
+    { "at": 18, "update": { "seq": 10, "boutId": "b1", "redScore": 6, "blueScore": 2 } },
+    { "at": 19, "update": { "seq": 9,  "boutId": "b1", "redScore": 5, "blueScore": 2 } },
+    { "at": 22, "update": { "seq": 11, "boutId": "b1", "redScore": 6, "blueScore": 2, "period": 2, "status": "live", "streamId": "mat-1" } },
+    { "at": 25, "update": { "seq": 12, "boutId": "b4", "redScore": 2, "blueScore": 0 } },
+    { "at": 28, "update": { "seq": 13, "boutId": "b2", "period": 2 } },
+    { "at": 30, "update": { "seq": 14, "boutId": "b3", "redScore": 2, "blueScore": 1 } },
+    { "at": 33, "update": { "seq": 15, "boutId": "b4", "redScore": 2, "blueScore": 0, "period": 1, "status": "live", "streamId": "mat-4" } },
+    { "at": 36, "update": { "seq": 17, "boutId": "b2", "redScore": 5, "blueScore": 3 } },
+    { "at": 37, "update": { "seq": 16, "boutId": "b2", "redScore": 5, "blueScore": 1 } },
+    { "at": 40, "update": { "seq": 18, "boutId": "b2", "redScore": 5, "blueScore": 3, "period": 2, "status": "live", "streamId": "mat-2" } },
+    { "at": 44, "update": { "seq": 19, "boutId": "b1", "redScore": 9, "blueScore": 4, "period": 3, "status": "final" } },
+    { "at": 48, "update": { "seq": 20, "boutId": "b3", "redScore": 4, "blueScore": 1 } },
+    { "at": 52, "update": { "seq": 21, "boutId": "b4", "redScore": 4, "blueScore": 3 } },
+    { "at": 56, "update": { "seq": 22, "boutId": "b2", "redScore": 7, "blueScore": 3, "period": 3, "status": "live", "streamId": "mat-2" } }
+  ]
+}
