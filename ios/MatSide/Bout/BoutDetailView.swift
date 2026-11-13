@@ -14,7 +14,7 @@ struct BoutDetailView: View {
                 VideoPlayer(player: model.player)
                     .aspectRatio(16 / 9, contentMode: .fit)
             } else {
-                ContentUnavailableView("No stream for this mat", systemImage: "video.slash")
+                ContentUnavailableView("No stream for this mat", systemImage: "tv.slash")
                     .frame(height: 200)
             }
 

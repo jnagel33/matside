@@ -1,10 +1,10 @@
 {
   "event": { "id": "evt-1", "name": "Lakeside Open (Sample)", "status": "live" },
   "bouts": [
-    { "id": "b1", "mat": 1, "red": "A. Rivera", "blue": "J. Okafor", "redScore": 0, "blueScore": 0, "period": 1, "status": "live", "streamId": "mat-1" },
-    { "id": "b2", "mat": 2, "red": "M. Chen", "blue": "D. Novak", "redScore": 0, "blueScore": 0, "period": 1, "status": "live", "streamId": "mat-2" },
-    { "id": "b3", "mat": 3, "red": "T. Haddad", "blue": "L. Brooks", "redScore": 0, "blueScore": 0, "period": 1, "status": "live" },
-    { "id": "b4", "mat": 4, "red": "S. Ito", "blue": "R. Mensah", "redScore": 0, "blueScore": 0, "period": 1, "status": "scheduled", "streamId": "mat-4" }
+    { "id": "b1", "mat": 1, "red": "A. Rivera", "blue": "J. Okafor", "redScore": 0, "blueScore": 0, "period": 1, "status": "live", "streamId": "mat-1", "isStreamed": true },
+    { "id": "b2", "mat": 2, "red": "M. Chen", "blue": "D. Novak", "redScore": 0, "blueScore": 0, "period": 1, "status": "live", "streamId": "mat-2", "isStreamed": true },
+    { "id": "b3", "mat": 3, "red": "T. Haddad", "blue": "L. Brooks", "redScore": 0, "blueScore": 0, "period": 1, "status": "live", "isStreamed": false },
+    { "id": "b4", "mat": 4, "red": "S. Ito", "blue": "R. Mensah", "redScore": 0, "blueScore": 0, "period": 1, "status": "scheduled", "streamId": "mat-4", "isStreamed": true }
   ],
   "loopSeconds": 60,
   "frames": [

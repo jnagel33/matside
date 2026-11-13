@@ -31,6 +31,12 @@ class LiveEventManager(private val server: FakeLiveServer) {
         }
     }
 
+    private fun shutdown() {
+        subscribers.clear()
+        connection?.cancel()
+        connection = null
+    }
+
     private fun open() {
         connection = scope.launch {
             server.connect().collect { raw ->
@@ -46,6 +52,13 @@ class LiveEventManager(private val server: FakeLiveServer) {
 
         fun get(server: FakeLiveServer): LiveEventManager = instance ?: synchronized(this) {
             instance ?: LiveEventManager(server).also { instance = it }
+        }
+
+        /** Drops every subscriber and closes the connection; the next [get] reconnects from 0:00. */
+        fun restart() {
+            instance?.shutdown()
+            instance = null
+            FakeLiveServer.restart()
         }
     }
 }

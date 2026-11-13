@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct EventView: View {
+    let onRestart: () -> Void
     @State private var presenter = EventPresenter()
 
     var body: some View {
@@ -17,6 +18,9 @@ struct EventView: View {
             }
         }
         .navigationTitle(presenter.event?.name ?? "Live")
+        .toolbar {
+            Button("Restart", systemImage: "arrow.counterclockwise", action: onRestart)
+        }
         .navigationDestination(for: Bout.self) { bout in
             BoutDetailView(bout: bout)
         }
@@ -31,9 +35,12 @@ struct BoutRow: View {
     var body: some View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Mat \(bout.mat)")
-                    .font(.caption.bold())
-                    .foregroundStyle(.secondary)
+                HStack(spacing: 6) {
+                    Text("Mat \(bout.mat)")
+                    StreamIndicator(isStreamed: bout.isStreamed)
+                }
+                .font(.caption.bold())
+                .foregroundStyle(.secondary)
                 Text(bout.red).foregroundStyle(.red)
                 Text(bout.blue).foregroundStyle(.blue)
             }
@@ -52,6 +59,16 @@ struct BoutRow: View {
             }
         }
         .padding(.vertical, 4)
+    }
+}
+
+struct StreamIndicator: View {
+    let isStreamed: Bool
+
+    var body: some View {
+        Image(systemName: isStreamed ? "tv" : "tv.slash")
+            .foregroundStyle(isStreamed ? AnyShapeStyle(.tint) : AnyShapeStyle(.secondary))
+            .accessibilityLabel(isStreamed ? "Streamed" : "Not streamed")
     }
 }
 

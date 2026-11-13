@@ -22,6 +22,7 @@ struct Bout: Codable, Identifiable, Equatable {
     var period: Int
     var status: BoutStatus
     var streamId: String?
+    let isStreamed: Bool
     var seq: Int?
 }
 

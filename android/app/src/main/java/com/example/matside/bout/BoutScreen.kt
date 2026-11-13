@@ -56,7 +56,6 @@ fun BoutScreen(
         ExoPlayer.Builder(context).build().apply {
             setMediaItem(MediaItem.fromUri("asset:///bout.mp4"))
             repeatMode = Player.REPEAT_MODE_ALL
-            volume = 0f
             playWhenReady = true
             prepare()
         }

@@ -28,6 +28,7 @@ data class Bout(
     val period: Int,
     val status: BoutStatus,
     val streamId: String? = null,
+    val isStreamed: Boolean = false,
     val seq: Int? = null,
 )
 

@@ -4,7 +4,14 @@ import Foundation
 /// The connection opens with the first subscriber and closes when the last one leaves.
 @MainActor
 final class LiveEventManager {
-    static let shared = LiveEventManager(server: .shared)
+    private(set) static var shared = LiveEventManager(server: .shared)
+
+    /// Drops every subscriber and reconnects to a fresh server from 0:00.
+    static func restart() {
+        shared.shutdown()
+        FakeLiveServer.restart()
+        shared = LiveEventManager(server: .shared)
+    }
 
     private let server: FakeLiveServer
     private var subscribers: [UUID: (FeedFrame) -> Void] = [:]
@@ -29,6 +36,12 @@ final class LiveEventManager {
             connection?.cancel()
             connection = nil
         }
+    }
+
+    private func shutdown() {
+        subscribers.removeAll()
+        connection?.cancel()
+        connection = nil
     }
 
     private func open() {

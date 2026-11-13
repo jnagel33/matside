@@ -55,6 +55,11 @@ class FakeLiveServer(val script: FeedScript) {
         fun get(context: Context): FakeLiveServer = instance ?: synchronized(this) {
             instance ?: FakeLiveServer(FeedScript.load(context)).also { instance = it }
         }
+
+        /** The next [get] starts a fresh server whose timeline begins then. */
+        fun restart() {
+            instance = null
+        }
     }
 }
 

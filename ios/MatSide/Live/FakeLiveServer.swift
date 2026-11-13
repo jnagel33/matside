@@ -3,7 +3,12 @@ import Foundation
 /// Stands in for the realtime backend. Replays `feed.json` on a loop, timed from app launch,
 /// so every connection sees the same timeline. Nothing here touches the network.
 final class FakeLiveServer: @unchecked Sendable {
-    static let shared = FakeLiveServer(script: .bundled())
+    private(set) static var shared = FakeLiveServer(script: .bundled())
+
+    /// Starts a fresh server whose timeline begins now.
+    static func restart() {
+        shared = FakeLiveServer(script: shared.script)
+    }
 
     let script: FeedScript
     private let startDate = Date()

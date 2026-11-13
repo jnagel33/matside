@@ -10,16 +10,21 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Tv
+import androidx.compose.material.icons.filled.TvOff
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -42,6 +47,7 @@ import com.example.matside.model.BoutStatus
 @Composable
 fun EventScreen(
     onBoutSelected: (Bout) -> Unit,
+    onRestart: () -> Unit,
     viewModel: EventViewModel = viewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -51,7 +57,18 @@ fun EventScreen(
         onDispose { viewModel.stop() }
     }
 
-    Scaffold(topBar = { TopAppBar(title = { Text(state.event?.name ?: "Live") }) }) { padding ->
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(state.event?.name ?: "Live") },
+                actions = {
+                    IconButton(onClick = onRestart) {
+                        Icon(Icons.Filled.Refresh, contentDescription = "Restart")
+                    }
+                },
+            )
+        },
+    ) { padding ->
         if (state.isLoading) {
             Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
@@ -77,7 +94,11 @@ private fun BoutRow(bout: Bout, onClick: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text("Mat ${bout.mat}", style = MaterialTheme.typography.labelMedium, color = Color.Gray)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("Mat ${bout.mat}", style = MaterialTheme.typography.labelMedium, color = Color.Gray)
+                Spacer(Modifier.width(6.dp))
+                StreamIndicator(isStreamed = bout.isStreamed)
+            }
             Text(bout.red, color = Color(0xFFD32F2F))
             Text(bout.blue, color = Color(0xFF1976D2))
         }
@@ -102,6 +123,16 @@ private fun BoutRow(bout: Bout, onClick: () -> Unit) {
             )
         }
     }
+}
+
+@Composable
+private fun StreamIndicator(isStreamed: Boolean) {
+    Icon(
+        if (isStreamed) Icons.Filled.Tv else Icons.Filled.TvOff,
+        contentDescription = if (isStreamed) "Streamed" else "Not streamed",
+        tint = if (isStreamed) MaterialTheme.colorScheme.primary else Color.Gray,
+        modifier = Modifier.size(16.dp),
+    )
 }
 
 @Composable

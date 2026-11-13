@@ -16,7 +16,6 @@ final class BoutDetailModel {
         self.bout = bout
         self.server = server
         player = AVQueuePlayer()
-        player.isMuted = true
     }
 
     deinit {
